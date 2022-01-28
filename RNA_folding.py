@@ -182,13 +182,12 @@ def pseudoknot_terms(stem_dict, min_stem=3, c=0.3):
     for stem1, stem2 in product(stem_dict.keys(), stem_dict.keys()):
         # 先找保存在stem_dict的key里最大的stem
         # Using product instead of combinations allows for short asymmetric checks.
-        if stem1[0] + 2 * min_stem < stem2[1] and stem1[2] + 2 * min_stem < stem2[3]:
+        # if stem1[0] + 2 * min_stem < stem2[1] and stem1[2] + 2 * min_stem < stem2[3]:
             # 这个判断条件存疑？
             # 当stem2:(a',b',c',d')和stem1:(a,b,c,d);有可能交叉(aba'b'cdc'd')(间隔min_stem)再进行下一步判断：
-            pseudos.update({(substem1, substem2): c * (1 + substem1[1] - substem1[0]) * (1 + substem2[1] - substem2[0])
-                            for substem1, substem2
-                            in product(stem_dict[stem1], stem_dict[stem2])
-                            if substem1[1] < substem2[0] and substem2[1] < substem1[2] and substem1[3] < substem2[2]})
+        pseudos.update({(substem1, substem2): c * (1 + substem1[1] - substem1[0]) * (1 + substem2[1] - substem2[0])
+                        for substem1, substem2 in product(stem_dict[stem1], stem_dict[stem2])
+                        if substem1[1] < substem2[0] and substem2[1] < substem1[2] and substem1[3] < substem2[2]})
             # 进一步判断保存在stem_dict的value里小的stem，同样交叉aba'b'cdc'd'，若pseuknot形成，添加penallty系数到pseudos字典key(substem1, substem2)的value
     return pseudos
 
