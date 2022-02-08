@@ -348,7 +348,7 @@ def process_cqm_solution(sample_set, verbose=True):
 
 
 # Create command line functionality.
-DEFAULT_PATH = join(dirname(__file__), 'RNA_text_files', 'TMGMV_UPD-PK1.txt')
+DEFAULT_PATH = join(dirname(__file__), 'RNA_text_files', 'HAV_PK1.txt')
 
 
 @click.command(help='Solve an instance of the RNA folding problem using '
